@@ -11,6 +11,25 @@ It then gives a risk score with its reasons, writes a short investigator note in
 
 Everything runs on your computer. Nothing is sent to an outside service.
 
+![A case page: documents, cited note, coverage, warning signs and Ask the documents](results/screenshots/case_page_light.png)
+
+## Results
+
+Measured by `python run.py eval` on 50 sample cases (15 vehicle, 18 health, 17 property) with `qwen2.5:3b-instruct`. Full tables, with n for every number, are in [results/RESULTS.md](results/RESULTS.md).
+
+| What | Result | n |
+|---|---|---|
+| Planted document mismatches: precision / recall | 1.0 / 1.0 | 16 |
+| Warning signs: precision / recall | 0.9697 / 1.0 | 32 |
+| Coverage status accuracy | 0.78 | 50 |
+| Fact fields read correctly | 0.9698 | 696 |
+| Known questions answered correctly | 1.0 | 200 |
+| Unanswerable questions answered "Not found in the documents" | 1.0 | 50 |
+| Note sentences kept by the citation check | 0.9421 | 190 |
+| Risk model (real data), logistic regression: ROC-AUC / PR-AUC | 0.8052 / 0.1616 | 15,345 |
+
+The case documents are synthetic, with problems planted at chosen rates, so these figures show the method works on sample data, not how it would do on real cases. Coverage is the weakest check, and its rule for correcting "excluded" was refined after a first run scored 0.46 on the same cases, so 0.78 is optimistic.
+
 ## Starting the app
 
 You need Python 3.11 and [Ollama](https://ollama.com).

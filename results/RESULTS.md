@@ -62,7 +62,7 @@ For mismatches and warning signs, n is the number planted, so a small n means a 
 | Mismatch provider_repeat: recall | 1.0 | 3 | sample |
 | All mismatches: precision | 1.0 | 16 | sample |
 | All mismatches: recall | 1.0 | 16 | sample |
-| Coverage status accuracy | 0.46 | 50 | sample |
+| Coverage status accuracy | 0.78 | 50 | sample |
 | Warning signs: precision | 0.9697 | 32 | sample |
 | Warning signs: recall | 1.0 | 32 | sample |
 | Fact fields read correctly | 0.9698 | 696 | sample |
@@ -73,8 +73,8 @@ For mismatches and warning signs, n is the number planted, so a small n means a 
 |---|---|---|---|
 | Known questions answered correctly | 1.0 | 200 | sample |
 | Unanswerable questions answered "Not found in the documents" | 1.0 | 50 | sample |
-| Note sentences kept by the citation check | 0.9474 | 190 | sample |
-| Note sentences removed | 10 | 190 | sample |
+| Note sentences kept by the citation check | 0.9421 | 190 | sample |
+| Note sentences removed | 11 | 190 | sample |
 | Answers removed by the citation check | 0 | 200 | sample |
 
-Language model: qwen2.5:3b-instruct. Real calls in this run: 24; reused from the cache: 549; model time in seconds: 570.7.
+Language model: qwen2.5:3b-instruct. Real calls in this run: 16; reused from the cache: 557; model time in seconds: 741.3.

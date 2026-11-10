@@ -1,12 +1,12 @@
 {
   "cases": 50,
-  "coverage_accuracy": 0.46,
+  "coverage_accuracy": 0.78,
   "coverage_confusion": {
     "covered": {
-      "covered": 19,
+      "covered": 35,
       "excluded": 2,
       "partly": 3,
-      "unclear": 18
+      "unclear": 2
     },
     "excluded": {
       "covered": 1,

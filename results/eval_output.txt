@@ -45,3 +45,27 @@ Evaluating checks and answers with qwen2.5:3b-instruct...
   evaluated TL-0028 (28/50), 637 s so far, {'real_calls': 9, 'cached_calls': 313, 'seconds': 447.8104109764099, 'failures': 0}
   evaluated TL-0029 (29/50), 644 s so far, {'real_calls': 9, 'cached_calls': 325, 'seconds': 447.8104109764099, 'failures': 0}
   evaluated TL-0030 (30/50), 649 s so far, {'real_calls': 9, 'cached_calls': 337, 'seconds': 447.8104109764099, 'failures': 0}
+  evaluated TL-0031 (31/50), 711 s so far, {'real_calls': 10, 'cached_calls': 348, 'seconds': 502.0757386684418, 'failures': 0}
+  evaluated TL-0032 (32/50), 722 s so far, {'real_calls': 10, 'cached_calls': 359, 'seconds': 502.0757386684418, 'failures': 0}
+  evaluated TL-0033 (33/50), 782 s so far, {'real_calls': 11, 'cached_calls': 369, 'seconds': 553.9233894348145, 'failures': 0}
+  evaluated TL-0034 (34/50), 823 s so far, {'real_calls': 12, 'cached_calls': 379, 'seconds': 585.4096622467041, 'failures': 0}
+  evaluated TL-0035 (35/50), 829 s so far, {'real_calls': 12, 'cached_calls': 390, 'seconds': 585.4096622467041, 'failures': 0}
+  evaluated TL-0036 (36/50), 835 s so far, {'real_calls': 12, 'cached_calls': 402, 'seconds': 585.4096622467041, 'failures': 0}
+  evaluated TL-0037 (37/50), 840 s so far, {'real_calls': 12, 'cached_calls': 413, 'seconds': 585.4096622467041, 'failures': 0}
+  evaluated TL-0038 (38/50), 845 s so far, {'real_calls': 12, 'cached_calls': 425, 'seconds': 585.4096622467041, 'failures': 0}
+  evaluated TL-0039 (39/50), 851 s so far, {'real_calls': 12, 'cached_calls': 436, 'seconds': 585.4096622467041, 'failures': 0}
+  evaluated TL-0040 (40/50), 857 s so far, {'real_calls': 12, 'cached_calls': 448, 'seconds': 585.4096622467041, 'failures': 0}
+  evaluated TL-0041 (41/50), 865 s so far, {'real_calls': 12, 'cached_calls': 459, 'seconds': 585.4096622467041, 'failures': 0}
+  evaluated TL-0042 (42/50), 905 s so far, {'real_calls': 13, 'cached_calls': 469, 'seconds': 619.9066705703735, 'failures': 0}
+  evaluated TL-0043 (43/50), 912 s so far, {'real_calls': 13, 'cached_calls': 480, 'seconds': 619.9066705703735, 'failures': 0}
+  evaluated TL-0044 (44/50), 920 s so far, {'real_calls': 13, 'cached_calls': 492, 'seconds': 619.9066705703735, 'failures': 0}
+  evaluated TL-0045 (45/50), 925 s so far, {'real_calls': 13, 'cached_calls': 504, 'seconds': 619.9066705703735, 'failures': 0}
+  evaluated TL-0046 (46/50), 965 s so far, {'real_calls': 14, 'cached_calls': 514, 'seconds': 654.740879535675, 'failures': 0}
+  evaluated TL-0047 (47/50), 971 s so far, {'real_calls': 14, 'cached_calls': 525, 'seconds': 654.740879535675, 'failures': 0}
+  evaluated TL-0048 (48/50), 1030 s so far, {'real_calls': 15, 'cached_calls': 535, 'seconds': 704.7358169555664, 'failures': 0}
+  evaluated TL-0049 (49/50), 1073 s so far, {'real_calls': 16, 'cached_calls': 546, 'seconds': 741.3239943981171, 'failures': 0}
+  evaluated TL-0050 (50/50), 1079 s so far, {'real_calls': 16, 'cached_calls': 557, 'seconds': 741.3239943981171, 'failures': 0}
+Saved C:\Users\aalok\Desktop\tallyline-project\results\checks.json
+Saved C:\Users\aalok\Desktop\tallyline-project\results\answers.json
+Wrote C:\Users\aalok\Desktop\tallyline-project\results\RESULTS.md
+Language model use in this run: {'real_calls': 16, 'cached_calls': 557, 'seconds': 741.3239943981171, 'failures': 0}
