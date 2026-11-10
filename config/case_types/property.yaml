@@ -1,0 +1,22 @@
+# Sample home and property insurance type. All property-specific words live in this file
+# and in config/sample_content/property/. There is no labelled dataset, so no risk model.
+name: property
+label: Property insurance
+documents:                       # files expected in each case folder
+  statement: Policyholder statement
+  assessment_report: Loss assessor's report
+  invoice: Repair invoice
+  incident_report: Police report        # optional
+terms:                           # how general words appear in the UI for this type
+  provider: Repair contractor
+  items: Damaged items
+  loss_detail: Area damaged
+fact_fields: [incident_date, location, incident_description, loss_detail,
+              items_assessed, items_billed, estimate, invoice_total, invoice_date,
+              provider, incident_report_filed]
+knowledge_folder: knowledge/property
+clause_prefixes:                 # how clause IDs in the policy show their kind
+  cover: COV
+  limit: LIM
+  exclusion: EXC
+sample_content: config/sample_content/property   # used only to build sample data

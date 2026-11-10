@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block title %}Knowledge · Tallyline{% endblock %}
+{% block content %}
+<div class="page-head">
+  <h1>Knowledge</h1>
+  <p class="muted">Passages indexed:
+    knowledge <span class="mono">{{ counts.get('knowledge', 0) }}</span>,
+    case documents <span class="mono">{{ counts.get('case_docs', 0) }}</span>,
+    past cases <span class="mono">{{ counts.get('past_cases', 0) }}</span></p>
+</div>
+<div class="knowledge-grid">
+  <div>
+    {% for group in groups %}
+    <section class="panel">
+      <h2>{{ group.label }}</h2>
+      {% if group.files %}
+      <div class="table-wrap">
+        <table class="compact">
+          <thead><tr><th>Document</th><th>Kind</th><th class="num">Passages</th></tr></thead>
+          <tbody>
+            {% for file in group.files %}
+            <tr><td>{{ file.name }}</td><td>{{ "Policy wording" if file.source == "policy" else "Warning signs" }}</td><td class="mono num">{{ file.passages }}</td></tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      {% else %}<p class="muted">No documents yet.</p>{% endif %}
+    </section>
+    {% endfor %}
+  </div>
+  <div>
+    <section class="panel">
+      <h2>Add a PDF</h2>
+      <form hx-post="/knowledge/upload" hx-encoding="multipart/form-data" hx-target="#knowledge-message" hx-swap="innerHTML" class="stack">
+        <label>File <input type="file" name="file" accept=".pdf" required></label>
+        <label>Insurance type
+          <select name="case_type">
+            {% for name, type in case_types.items() %}<option value="{{ name }}">{{ type.label }}</option>{% endfor %}
+            <option value="general">General (warning signs only)</option>
+          </select>
+        </label>
+        <label>Kind
+          <select name="source">
+            <option value="policy">Policy wording</option>
+            <option value="red_flags">Warning signs</option>
+          </select>
+        </label>
+        <button type="submit" class="button">Upload</button>
+      </form>
+      <form hx-post="/knowledge/rebuild" hx-target="#knowledge-message" hx-swap="innerHTML" hx-indicator="#rebuild-progress" class="form-row spaced">
+        <button type="submit" class="button button-plain">Rebuild index</button>
+        <span id="rebuild-progress" class="progress-text">Rebuilding…</span>
+      </form>
+      <div id="knowledge-message"></div>
+    </section>
+    <section class="panel">
+      <h2>Test search</h2>
+      <form hx-get="/knowledge/search" hx-target="#search-results" hx-swap="innerHTML" hx-indicator="#search-progress" class="stack">
+        <input id="search" type="search" name="q" placeholder="Type a search" aria-label="Test search">
+        <select name="index" aria-label="Index">
+          <option value="knowledge">Knowledge</option>
+          <option value="case_docs">Case documents</option>
+          <option value="past_cases">Past cases</option>
+        </select>
+        <div class="form-row">
+          <button type="submit" class="button button-plain">Search</button>
+          <span id="search-progress" class="progress-text">Searching…</span>
+        </div>
+      </form>
+      <div id="search-results"></div>
+    </section>
+  </div>
+</div>
+{% endblock %}

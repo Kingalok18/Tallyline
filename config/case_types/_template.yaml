@@ -1,0 +1,35 @@
+# Copy this file to add a new kind of insurance, e.g. config/case_types/health.yaml,
+# then add the name to `case_types` in config/settings.yaml.
+name: example_type               # must match the file name
+label: Example insurance         # shown in the case list and on the knowledge page
+
+documents:                       # document key -> label. The keys are fixed; labels are yours.
+  statement: Policyholder statement
+  assessment_report: Assessment report   # health: Doctor's report; property: Loss adjuster's report
+  invoice: Invoice                       # health: Hospital bill; property: Contractor's invoice
+  incident_report: Incident report       # optional document, for example an official report
+
+terms:                           # how general words appear in the UI for this type
+  provider: Service provider     # health: Hospital; property: Contractor
+  items: Items                   # health: Treatments; property: Damaged items
+  loss_detail: Loss detail       # health: Diagnosis; property: Area of damage
+
+fact_fields: [incident_date, location, incident_description, loss_detail,
+              items_assessed, items_billed, estimate, invoice_total, invoice_date,
+              provider, incident_report_filed]
+
+# risk_model is optional. Leave it out when you have no labelled dataset:
+# the risk score then shares its weight among the other parts.
+# risk_model:
+#   dataset: data/raw/your_dataset.csv
+#   label_column: your_fraud_label_column
+#   drop_columns: [any_id_columns]
+
+knowledge_folder: knowledge/example_type   # holds policy/ and red_flags/ subfolders
+
+# Optional. If your policy's clause IDs show their kind, name the prefixes here. A coverage status
+# the cited clauses cannot support is then corrected, for example "excluded" with no exclusion cited.
+# clause_prefixes:
+#   cover: COV
+#   limit: LIM
+#   exclusion: EXC

@@ -1,0 +1,12 @@
+Read this {document_label} and return a JSON object with exactly these keys:
+{field_lines}
+
+Rules:
+- Use only what the document says. Use null when the document does not say.
+- Copy dates, names and amounts exactly as written. Amounts are numbers without a currency.
+- Lists are JSON arrays of short item names.
+
+Document:
+{document}
+
+JSON:

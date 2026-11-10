@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}{{ past.id }} · Tallyline{% endblock %}
+{% block content %}
+<div class="page-head">
+  <h1 class="mono">{{ past.id }}</h1>
+  {% if current %}<a href="/cases/{{ current.id }}">Back to {{ current.id }}</a>{% endif %}
+</div>
+<div class="compare">
+  <section class="panel">
+    <h2>Past case</h2>
+    <dl>
+      <dt>Outcome</dt><dd>{{ OUTCOME_LABELS.get(past.outcome, past.outcome) }}</dd>
+      <dt>Incident date</dt><dd class="mono">{{ past.incident_date }}</dd>
+      <dt>{{ case_type.terms.provider if case_type else "Service provider" }}</dt><dd>{{ past.provider }}</dd>
+      <dt>Amount</dt><dd class="mono">{{ past.currency }} {{ "%.2f"|format(past.amount) }}</dd>
+      <dt>Summary</dt><dd class="quoted">{{ past.summary }}</dd>
+      <dt>Investigator note</dt><dd class="quoted">{{ past.note }}</dd>
+    </dl>
+  </section>
+  {% if current %}
+  <section class="panel">
+    <h2>Current case <span class="mono">{{ current.id }}</span></h2>
+    <dl>
+      <dt>Status</dt><dd>{{ current.status }}</dd>
+      <dt>Incident date</dt><dd class="mono">{{ current.incident_date }}</dd>
+      <dt>{{ case_type.terms.provider if case_type else "Service provider" }}</dt><dd>{{ current.provider }}</dd>
+      <dt>Amount</dt><dd class="mono">{{ current.currency }} {{ "%.2f"|format(current.amount or 0) }}</dd>
+      <dt>Location</dt><dd>{{ current_facts.location or "—" }}</dd>
+      <dt>Incident description</dt><dd class="quoted">{{ current_facts.incident_description or "Run the analysis to read this from the documents." }}</dd>
+    </dl>
+  </section>
+  {% endif %}
+</div>
+{% endblock %}

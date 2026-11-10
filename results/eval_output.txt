@@ -1,0 +1,47 @@
+﻿Evaluating retrieval (no language model)...
+.\.venv\Scripts\python.exe : 
+At line:1 char:347
++ ... allyline-project; .\.venv\Scripts\python.exe run.py eval *>&1 | Out-F ...
++                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 199/199 [00:00<00:00, 17414.28it/s]
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits 
+and faster downloads.
+
+Loading weights:   0%|          | 0/105 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 105/105 [00:00<00:00, 1870.45it/s]
+Saved C:\Users\aalok\Desktop\tallyline-project\results\retrieval.json
+Evaluating checks and answers with qwen2.5:3b-instruct...
+  evaluated TL-0001 (1/50), 4 s so far, {'real_calls': 0, 'cached_calls': 12, 'seconds': 0.0, 'failures': 0}
+  evaluated TL-0002 (2/50), 7 s so far, {'real_calls': 0, 'cached_calls': 24, 'seconds': 0.0, 'failures': 0}
+  evaluated TL-0003 (3/50), 10 s so far, {'real_calls': 0, 'cached_calls': 35, 'seconds': 0.0, 'failures': 0}
+  evaluated TL-0004 (4/50), 74 s so far, {'real_calls': 1, 'cached_calls': 46, 'seconds': 59.02729153633118, 'failures': 0}
+  evaluated TL-0005 (5/50), 78 s so far, {'real_calls': 1, 'cached_calls': 58, 'seconds': 59.02729153633118, 'failures': 0}
+  evaluated TL-0006 (6/50), 83 s so far, {'real_calls': 1, 'cached_calls': 70, 'seconds': 59.02729153633118, 'failures': 0}
+  evaluated TL-0007 (7/50), 152 s so far, {'real_calls': 2, 'cached_calls': 80, 'seconds': 120.30942463874817, 'failures': 0}
+  evaluated TL-0008 (8/50), 160 s so far, {'real_calls': 2, 'cached_calls': 92, 'seconds': 120.30942463874817, 'failures': 0}
+  evaluated TL-0009 (9/50), 171 s so far, {'real_calls': 2, 'cached_calls': 103, 'seconds': 120.30942463874817, 'failures': 0}
+  evaluated TL-0010 (10/50), 191 s so far, {'real_calls': 2, 'cached_calls': 115, 'seconds': 120.30942463874817, 'failures': 0}
+  evaluated TL-0011 (11/50), 198 s so far, {'real_calls': 2, 'cached_calls': 127, 'seconds': 120.30942463874817, 'failures': 0}
+  evaluated TL-0012 (12/50), 203 s so far, {'real_calls': 2, 'cached_calls': 139, 'seconds': 120.30942463874817, 'failures': 0}
+  evaluated TL-0013 (13/50), 207 s so far, {'real_calls': 2, 'cached_calls': 150, 'seconds': 120.30942463874817, 'failures': 0}
+  evaluated TL-0014 (14/50), 248 s so far, {'real_calls': 3, 'cached_calls': 160, 'seconds': 156.2032597064972, 'failures': 0}
+  evaluated TL-0015 (15/50), 255 s so far, {'real_calls': 3, 'cached_calls': 171, 'seconds': 156.2032597064972, 'failures': 0}
+  evaluated TL-0016 (16/50), 262 s so far, {'real_calls': 3, 'cached_calls': 182, 'seconds': 156.2032597064972, 'failures': 0}
+  evaluated TL-0017 (17/50), 266 s so far, {'real_calls': 3, 'cached_calls': 193, 'seconds': 156.2032597064972, 'failures': 0}
+  evaluated TL-0018 (18/50), 272 s so far, {'real_calls': 3, 'cached_calls': 204, 'seconds': 156.2032597064972, 'failures': 0}
+  evaluated TL-0019 (19/50), 278 s so far, {'real_calls': 3, 'cached_calls': 216, 'seconds': 156.2032597064972, 'failures': 0}
+  evaluated TL-0020 (20/50), 365 s so far, {'real_calls': 4, 'cached_calls': 227, 'seconds': 233.75104093551636, 'failures': 0}
+  evaluated TL-0021 (21/50), 371 s so far, {'real_calls': 4, 'cached_calls': 238, 'seconds': 233.75104093551636, 'failures': 0}
+  evaluated TL-0022 (22/50), 378 s so far, {'real_calls': 4, 'cached_calls': 249, 'seconds': 233.75104093551636, 'failures': 0}
+  evaluated TL-0023 (23/50), 433 s so far, {'real_calls': 5, 'cached_calls': 260, 'seconds': 278.93972611427307, 'failures': 0}
+  evaluated TL-0024 (24/50), 441 s so far, {'real_calls': 5, 'cached_calls': 272, 'seconds': 278.93972611427307, 'failures': 0}
+  evaluated TL-0025 (25/50), 486 s so far, {'real_calls': 6, 'cached_calls': 282, 'seconds': 317.0298500061035, 'failures': 0}
+  evaluated TL-0026 (26/50), 530 s so far, {'real_calls': 7, 'cached_calls': 293, 'seconds': 354.68371415138245, 'failures': 0}
+  evaluated TL-0027 (27/50), 579 s so far, {'real_calls': 8, 'cached_calls': 303, 'seconds': 397.31772089004517, 'failures': 0}
+  evaluated TL-0028 (28/50), 637 s so far, {'real_calls': 9, 'cached_calls': 313, 'seconds': 447.8104109764099, 'failures': 0}
+  evaluated TL-0029 (29/50), 644 s so far, {'real_calls': 9, 'cached_calls': 325, 'seconds': 447.8104109764099, 'failures': 0}
+  evaluated TL-0030 (30/50), 649 s so far, {'real_calls': 9, 'cached_calls': 337, 'seconds': 447.8104109764099, 'failures': 0}

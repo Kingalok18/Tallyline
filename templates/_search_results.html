@@ -1,0 +1,7 @@
+{% if q and not results %}<p class="muted">Nothing found.</p>{% endif %}
+{% for passage in results %}
+<article class="answer-card">
+  <div class="mono small muted">{{ passage.id }} · score {{ "%.2f"|format(passage.score) }}</div>
+  <p class="quoted">{{ passage.text[:300] }}{% if passage.text|length > 300 %}…{% endif %}</p>
+</article>
+{% endfor %}

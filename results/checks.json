@@ -1,0 +1,101 @@
+{
+  "cases": 50,
+  "coverage_accuracy": 0.46,
+  "coverage_confusion": {
+    "covered": {
+      "covered": 19,
+      "excluded": 2,
+      "partly": 3,
+      "unclear": 18
+    },
+    "excluded": {
+      "covered": 1,
+      "excluded": 3,
+      "unclear": 1
+    },
+    "partly": {
+      "covered": 2,
+      "partly": 1
+    }
+  },
+  "data": "sample",
+  "fact_field_accuracy": 0.9698,
+  "fact_fields": 696,
+  "limited": false,
+  "mismatch_rate_fraud": 0.6,
+  "mismatch_rate_genuine": 0.3,
+  "mismatches_all": {
+    "false_negatives": 0,
+    "false_positives": 0,
+    "planted": 16,
+    "precision": 1.0,
+    "recall": 1.0,
+    "true_positives": 16
+  },
+  "mismatches_per_type": {
+    "billed_items": {
+      "false_negatives": 0,
+      "false_positives": 0,
+      "planted": 2,
+      "precision": 1.0,
+      "recall": 1.0,
+      "true_positives": 2
+    },
+    "date_order": {
+      "false_negatives": 0,
+      "false_positives": 0,
+      "planted": 2,
+      "precision": 1.0,
+      "recall": 1.0,
+      "true_positives": 2
+    },
+    "early_incident": {
+      "false_negatives": 0,
+      "false_positives": 0,
+      "planted": 2,
+      "precision": 1.0,
+      "recall": 1.0,
+      "true_positives": 2
+    },
+    "incident_report": {
+      "false_negatives": 0,
+      "false_positives": 0,
+      "planted": 3,
+      "precision": 1.0,
+      "recall": 1.0,
+      "true_positives": 3
+    },
+    "invoice_total": {
+      "false_negatives": 0,
+      "false_positives": 0,
+      "planted": 2,
+      "precision": 1.0,
+      "recall": 1.0,
+      "true_positives": 2
+    },
+    "loss_detail": {
+      "false_negatives": 0,
+      "false_positives": 0,
+      "planted": 2,
+      "precision": 1.0,
+      "recall": 1.0,
+      "true_positives": 2
+    },
+    "provider_repeat": {
+      "false_negatives": 0,
+      "false_positives": 0,
+      "planted": 3,
+      "precision": 1.0,
+      "recall": 1.0,
+      "true_positives": 3
+    }
+  },
+  "red_flags": {
+    "false_negatives": 0,
+    "false_positives": 1,
+    "planted": 32,
+    "precision": 0.9697,
+    "recall": 1.0,
+    "true_positives": 32
+  }
+}

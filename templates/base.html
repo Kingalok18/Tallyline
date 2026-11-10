@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en"{% if settings.theme in ['light', 'dark'] %} data-theme="{{ settings.theme }}"{% endif %}>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Tallyline{% endblock %}</title>
+  <script>
+    try { var t = localStorage.getItem("tallyline-theme"); if (t) document.documentElement.setAttribute("data-theme", t); } catch (e) {}
+  </script>
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="/static/htmx.min.js" defer></script>
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/">Tallyline</a>
+    <nav>
+      <a href="/">Cases</a>
+      <a href="/knowledge">Knowledge</a>
+    </nav>
+    <div class="topbar-right">
+      {% if sample_data %}<span class="badge badge-neutral" title="The case documents are generated practice data">Sample data</span>{% endif %}
+      <button type="button" class="link-button" id="theme-toggle">Dark theme</button>
+    </div>
+  </header>
+
+  {% if not status.reachable %}
+  <div class="notice">
+    Ollama is not reachable, so analysis and questions are unavailable. Start Ollama, then run:
+    <code>ollama pull {{ status.model }}</code>
+  </div>
+  {% elif not status.model_present %}
+  <div class="notice">
+    The language model is not installed, so analysis and questions are unavailable. Run:
+    <code>ollama pull {{ status.model }}</code>
+  </div>
+  {% endif %}
+
+  <main class="{% block main_class %}page{% endblock %}">
+    {% block content %}{% endblock %}
+  </main>
+
+  <aside id="side-panel" class="side-panel" aria-label="Passage">
+    <div class="side-panel-head">
+      <span>Passage</span>
+      <button type="button" class="link-button" id="side-panel-close">Close (Esc)</button>
+    </div>
+    <div id="side-panel-body" class="side-panel-body"></div>
+  </aside>
+</body>
+</html>

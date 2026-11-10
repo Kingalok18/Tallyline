@@ -1,0 +1,12 @@
+{
+  "amount": 78949.0,
+  "case_id": "TL-0030",
+  "case_type": "health",
+  "currency": "INR",
+  "features": {},
+  "incident_date": "2022-12-12",
+  "policy_number": "PN-592961",
+  "policy_start": "2022-05-28",
+  "provider": "Ashford General Hospital",
+  "sample": true
+}

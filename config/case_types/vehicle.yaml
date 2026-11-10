@@ -1,0 +1,26 @@
+# The included sample case type. All vehicle-specific words live in this file
+# and in config/sample_content/vehicle/.
+name: vehicle
+label: Vehicle insurance
+documents:                       # files expected in each case folder
+  statement: Policyholder statement
+  assessment_report: Surveyor's assessment
+  invoice: Repair invoice
+  incident_report: Police report        # optional
+terms:                           # how general words appear in the UI for this type
+  provider: Garage
+  items: Damaged parts
+  loss_detail: Point of impact
+fact_fields: [incident_date, location, incident_description, loss_detail,
+              items_assessed, items_billed, estimate, invoice_total, invoice_date,
+              provider, incident_report_filed]
+risk_model:                      # optional; only types with a labelled dataset have one
+  dataset: data/raw/fraud_oracle.csv
+  label_column: FraudFound_P
+  drop_columns: [Sex, MaritalStatus, PolicyNumber, RepNumber]
+knowledge_folder: knowledge/vehicle
+clause_prefixes:                 # optional; how clause IDs in the policy show their kind
+  cover: COV
+  limit: LIM
+  exclusion: EXC
+sample_content: config/sample_content/vehicle   # optional; used only to build sample data

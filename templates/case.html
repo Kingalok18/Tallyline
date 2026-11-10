@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% from "_macros.html" import risk_badge %}
+{% block title %}{{ case.id }} · Tallyline{% endblock %}
+{% block main_class %}case-page{% endblock %}
+{% block content %}
+<div class="case-head">
+  <h1 class="mono">{{ case.id }}</h1>
+  <span class="muted">{{ case_type.label }}</span>
+  <span class="muted">Incident <span class="mono">{{ case.incident_date or "—" }}</span></span>
+  <span class="muted">Policy <span class="mono">{{ case.policy_number or "—" }}</span></span>
+  <span class="muted">{{ case_type.terms.provider }}: {{ case.provider or "—" }}</span>
+  <span id="case-risk">{{ risk_badge(case.risk_level) }}</span>
+</div>
+
+<div class="case-columns">
+  <section class="panel column" aria-label="Case documents">
+    <div class="tabs" role="tablist">
+      {% for doc in documents %}
+      <button type="button" class="tab {% if doc == first_doc %}active{% endif %}" role="tab"
+              hx-get="/cases/{{ case.id }}/documents/{{ doc }}" hx-target="#doc-view" hx-swap="innerHTML">{{ case_type.documents[doc] }}</button>
+      {% endfor %}
+    </div>
+    <div id="doc-view" class="document">{{ doc_html|safe }}</div>
+  </section>
+
+  <section class="panel column" aria-label="Findings">
+    <div id="findings">
+      {% if job %}
+        {% with case_id = case.id %}{% include "_progress.html" %}{% endwith %}
+      {% else %}
+        {% include "_findings.html" %}
+      {% endif %}
+    </div>
+  </section>
+
+  <section class="panel column" aria-label="Ask the documents">
+    <h2>Ask the documents</h2>
+    <form hx-post="/cases/{{ case.id }}/ask" hx-target="#answers" hx-swap="afterbegin" hx-indicator="#ask-progress"
+          hx-on::after-request="if (event.detail.successful) this.reset()">
+      <label class="sr-only" for="question">Question</label>
+      <textarea id="question" name="question" rows="3" required placeholder="Type a question about this case"></textarea>
+      <label class="check"><input type="checkbox" name="include_other" value="1"> Also search policy wording and past cases</label>
+      <div class="form-row">
+        <button type="submit" class="button">Ask</button>
+        <span id="ask-progress" class="progress-text">Searching the documents…</span>
+      </div>
+    </form>
+    <div id="answers">
+      {% for answer in answers %}
+        {% with cite = Citations() %}{% include "_answer_card.html" %}{% endwith %}
+      {% endfor %}
+    </div>
+  </section>
+</div>
+
+<div class="decision-bar">
+  <form class="decision-form" hx-post="/cases/{{ case.id }}/decision" hx-target="#decision-result" hx-swap="innerHTML">
+    <label class="sr-only" for="comment">Comment</label>
+    <input id="comment" type="text" name="comment" placeholder="Comment for the case file">
+    {% for key, label in DECISIONS.items() %}
+    <button type="submit" name="decision" value="{{ key }}" class="button {% if key != 'pay' %}button-plain{% endif %}">{{ label }}</button>
+    {% endfor %}
+  </form>
+  <div id="decision-result">{% if decision %}{% include "_decision.html" %}{% endif %}</div>
+</div>
+{% endblock %}

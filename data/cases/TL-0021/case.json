@@ -1,0 +1,12 @@
+{
+  "amount": 132345.0,
+  "case_id": "TL-0021",
+  "case_type": "health",
+  "currency": "INR",
+  "features": {},
+  "incident_date": "2023-01-21",
+  "policy_number": "PN-823172",
+  "policy_start": "2022-10-21",
+  "provider": "Queensway Medical Centre",
+  "sample": true
+}

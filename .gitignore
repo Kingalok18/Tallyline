@@ -1,0 +1,15 @@
+# Python environment and caches
+.venv/
+__pycache__/
+*.pyc
+
+# Personal notes, kept off GitHub
+PROJECT_INTERVIEW_GUIDE.md
+BUILD_LOG.md
+TALLYLINE_IMPLEMENTATION.md
+
+# Editor and OS files
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store

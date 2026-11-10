@@ -1,0 +1,22 @@
+# Sample health insurance type. All health-specific words live in this file
+# and in config/sample_content/health/. There is no labelled dataset, so no risk model.
+name: health
+label: Health insurance
+documents:                       # files expected in each case folder
+  statement: Policyholder statement
+  assessment_report: Doctor's report
+  invoice: Hospital bill
+  incident_report: Hospital admission record   # optional
+terms:                           # how general words appear in the UI for this type
+  provider: Hospital
+  items: Treatments
+  loss_detail: Diagnosis
+fact_fields: [incident_date, location, incident_description, loss_detail,
+              items_assessed, items_billed, estimate, invoice_total, invoice_date,
+              provider, incident_report_filed]
+knowledge_folder: knowledge/health
+clause_prefixes:                 # how clause IDs in the policy show their kind
+  cover: COV
+  limit: LIM
+  exclusion: EXC
+sample_content: config/sample_content/health   # used only to build sample data

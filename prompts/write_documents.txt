@@ -1,0 +1,13 @@
+You write one section of a {document_label} for a practice insurance case file. All content is fictional.
+
+Write: {instructions}
+
+Use only the facts below. Copy every place, name and number exactly as written.
+Write every date exactly as it is written in the facts, in the form 2001-02-03, never in words.
+Do not add any date, number, amount, name or place that is not in the facts.
+Write plain sentences only, with no headings, no lists and no markdown.
+
+Facts:
+{facts}
+
+Text:

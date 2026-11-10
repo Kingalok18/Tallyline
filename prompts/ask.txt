@@ -1,0 +1,14 @@
+Answer the question using only the passages below. Keep the answer short.
+Copy dates, names and numbers exactly as they appear in the passages.
+If the passages do not contain the answer, the answer must be exactly: Not found in the documents.
+
+Passages:
+{passages}
+
+Question: {question}
+
+Return a JSON object with these keys:
+"answer": the answer text
+"passages": array of the passage labels that support the answer, for example ["P1"]. Empty if not found.
+
+JSON:

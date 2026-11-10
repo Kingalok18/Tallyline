@@ -1,0 +1,33 @@
+{
+  "data": "sample",
+  "limited": false,
+  "min_score": 0.2,
+  "top_n": 4,
+  "top_n_past_cases": 5,
+  "with_reranker": {
+    "answerable_passing_min_score": 0.955,
+    "cases": 50,
+    "coverage_clause_hit_rate": 1.0,
+    "coverage_clauses": 53,
+    "known_answer_hit_rate": 1.0,
+    "known_answers": 200,
+    "lookalike_hit_rate": 1.0,
+    "lookalikes": 8,
+    "red_flag_hit_rate": 1.0,
+    "red_flags": 32,
+    "unanswerable_stopped_by_min_score": 0.58
+  },
+  "without_reranker": {
+    "answerable_passing_min_score": 1.0,
+    "cases": 50,
+    "coverage_clause_hit_rate": 0.9623,
+    "coverage_clauses": 53,
+    "known_answer_hit_rate": 1.0,
+    "known_answers": 200,
+    "lookalike_hit_rate": 1.0,
+    "lookalikes": 8,
+    "red_flag_hit_rate": 1.0,
+    "red_flags": 32,
+    "unanswerable_stopped_by_min_score": 0.0
+  }
+}

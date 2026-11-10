@@ -1,0 +1,14 @@
+{% from "_macros.html" import risk_badge %}
+{% for case in cases %}
+<tr class="case-row" data-href="/cases/{{ case.id }}" tabindex="-1">
+  <td class="mono"><a href="/cases/{{ case.id }}">{{ case.id }}</a></td>
+  <td>{{ case_types[case.case_type].label if case.case_type in case_types else case.case_type }}</td>
+  <td class="mono">{{ case.incident_date or "—" }}</td>
+  <td class="mono num">{% if case.amount is not none %}{{ case.currency }} {{ "%.2f"|format(case.amount) }}{% else %}—{% endif %}</td>
+  <td>{{ risk_badge(case.risk_level) }}</td>
+  <td class="issue">{{ case.main_issue or "—" }}</td>
+  <td>{{ case.status }}</td>
+</tr>
+{% else %}
+<tr><td colspan="7" class="muted empty">No cases match.</td></tr>
+{% endfor %}

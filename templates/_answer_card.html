@@ -1,0 +1,6 @@
+{% from "_macros.html" import cites %}
+<article class="answer-card">
+  <p class="answer-question">{{ answer.question }}</p>
+  <p class="answer-text">{{ answer.answer }} {{ cites(answer.passages, cite) }}</p>
+  {% if answer.error %}<p class="muted small">The language model could not answer: {{ answer.error }}</p>{% endif %}
+</article>

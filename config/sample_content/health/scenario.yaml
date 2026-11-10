@@ -1,0 +1,77 @@
+# Everything health-specific that the sample data generator needs.
+# There is no labelled health dataset, so dates come from sample_columns and the fraud
+# label is made up at sample_fraud_rate. These cases have no risk model.
+currency: INR
+past_amount_range: [15000, 250000]
+sample_fraud_rate: 0.1
+sample_columns:
+  Year: [2022, 2023, 2024]
+  Month: [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
+  WeekOfMonth: [1, 2, 3, 4]
+  DayOfWeek: [Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday]
+dataset_mapping:
+  year: Year
+  month: Month
+  week_of_month: WeekOfMonth
+  day_of_week: DayOfWeek
+cities: [Riverton, Lakeside, Ashford, Milltown, Northgate, Fairview, Brookfield, Eastwood, Kingsport, Harlow,
+         Westbury, Oakdale]
+providers: [Ashford General Hospital, Bayview Care Hospital, Cedar Grove Hospital, Dawnlight Medical Centre,
+            Elmwood City Hospital, Fernhill Hospital, Greenfield Multispeciality Hospital, Harbourside Hospital,
+            Ivy Lane Clinic and Hospital, Juniper Health Hospital, Kingsport Medical Centre, Lakeside Wellness Hospital,
+            Meadowbrook Hospital, Northgate Care Hospital, Oakdale District Hospital, Pinecrest Hospital,
+            Queensway Medical Centre, Riverbend Hospital, Stonebridge Hospital, Tulip Tree Hospital]
+loss_details:                    # diagnosis -> treatments that can be given for it
+  appendicitis: [Appendix removal surgery, Anaesthesia, Post-operative ward stay, Blood tests]
+  fractured left wrist: [X-ray, Wrist plaster cast, Orthopaedic consultation, Pain relief medicine]
+  dengue fever: [Platelet count tests, Intravenous fluids, General ward stay, Fever medicine]
+  kidney stones: [Ultrasound scan, Stone removal procedure, Urine tests, Pain relief medicine]
+  knee ligament tear: [MRI scan, Keyhole knee surgery, Knee brace, Physiotherapy sessions]
+  pneumonia: [Chest X-ray, Antibiotic course, Oxygen therapy, General ward stay]
+item_price_range: [1500, 45000]
+extra_billed_items: [Private room upgrade, Dental cleaning, Full body check-up package, Vitamin supplements, Spectacles]
+covered_incidents:               # description in the policyholder's words -> clause that gives cover
+  - {description: "I fell ill suddenly and was admitted to hospital as an emergency", clause: COV-01}
+  - {description: "my doctor referred me to hospital for in-patient treatment after several days of symptoms", clause: COV-01}
+  - {description: "I became very unwell at work and was admitted to hospital the same evening", clause: COV-01}
+  - {description: "I was injured in a fall at home and was taken to hospital", clause: COV-02}
+  - {description: "I was hurt when I slipped on a wet floor and was admitted to hospital", clause: COV-02}
+  - {description: "I had a procedure at the hospital and went home the same day", clause: COV-03}
+exclusions:
+  - {description: "I was admitted to hospital for a condition that had been diagnosed and treated before the policy started, which I had not declared", clause: EXC-01}
+  - {description: "I chose an experimental treatment that is not approved by the national medical council", clause: EXC-02}
+  - {description: "I fell ill while travelling and was treated in a hospital abroad, outside the territory named in the policy", clause: EXC-03}
+partly_covered:                  # covered, with one limited item
+  - {description: "I fell ill suddenly and was admitted to hospital, where I chose a private room above the room rent limit", clause: COV-01, limit_clause: LIM-01, extra_item: Private room charges}
+  - {description: "I was injured in a fall at home and was taken to hospital by a private ambulance", clause: COV-02, limit_clause: LIM-02, extra_item: Ambulance charges}
+  - {description: "I was injured in a fall at home, was treated in hospital and was sent home with a hired wheelchair", clause: COV-02, limit_clause: LIM-03, extra_item: Wheelchair hire}
+cues:                            # sentences added to a statement, each tied to a warning sign
+  - {flag_id: RF-G02, sentence: "I need this settled in cash as quickly as possible.", rate_fraud: 0.4, rate_genuine: 0.04}
+  - {flag_id: RF-G03, sentence: "I cannot produce the original hospital receipts, only photocopies of them.", rate_fraud: 0.3, rate_genuine: 0.03}
+  - {flag_id: RF-H01, sentence: "I chose a hospital in another city, far from where I live, although there is one near my home.", rate_fraud: 0.4, rate_genuine: 0.05}
+  - {flag_id: RF-H02, sentence: "I stayed in hospital for several more days even though I felt well enough to go home.", rate_fraud: 0.3, rate_genuine: 0.03}
+  - {flag_id: RF-H03, sentence: "The doctor who treated me is my cousin.", rate_fraud: 0.3, rate_genuine: 0.03}
+  - {flag_id: RF-H05, sentence: "I have also asked my other health insurer to pay for the same treatment.", rate_fraud: 0.2, rate_genuine: 0.01}
+incident_report_rate: 0.5
+statement_templates:
+  - >-
+    I am writing about my hospital stay that began on {incident_date} in {location}. On that day {incident_description}.
+    The doctors examined me and told me that I had {loss_detail}. I was treated at {provider}, where the staff looked
+    after me and prepared the bills. I have tried to give an accurate account in this statement, and I am ready to
+    answer any further questions you may have. Please let me know if you need anything else from me to deal with this case.
+  - >-
+    This is my account of what happened on {incident_date} in {location}. That day {incident_description}.
+    After some tests the doctor said that I had {loss_detail}. I was treated at {provider}, where the nurses and
+    doctors looked after me well. I have set out everything that I remember here as clearly as I can. Please contact me if you
+    need more details or further papers so that this case can be dealt with.
+assessment_templates:
+  - >-
+    The patient was examined by the treating doctor at {provider}. The diagnosis recorded is {loss_detail}.
+    The treatments listed below were given or planned, and the estimate below covers them.
+  - >-
+    The patient was seen at {provider} and the findings were recorded in the medical notes. The doctor's diagnosis is
+    {loss_detail}. Each treatment listed below was judged necessary, and the estimate reflects their expected cost.
+incident_report_templates:
+  - >-
+    The hospital recorded an admission on {incident_date} in {location}. The patient stated that
+    {incident_description}. The admitting doctor noted these details and a record number was issued.

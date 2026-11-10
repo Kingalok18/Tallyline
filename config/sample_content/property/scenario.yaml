@@ -1,0 +1,82 @@
+# Everything property-specific that the sample data generator needs.
+# There is no labelled property dataset, so dates come from sample_columns and the fraud
+# label is made up at sample_fraud_rate. These cases have no risk model.
+currency: INR
+past_amount_range: [10000, 300000]
+sample_fraud_rate: 0.1
+sample_columns:
+  Year: [2022, 2023, 2024]
+  Month: [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
+  WeekOfMonth: [1, 2, 3, 4]
+  DayOfWeek: [Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday]
+dataset_mapping:
+  year: Year
+  month: Month
+  week_of_month: WeekOfMonth
+  day_of_week: DayOfWeek
+cities: [Riverton, Lakeside, Ashford, Milltown, Northgate, Fairview, Brookfield, Eastwood, Kingsport, Harlow,
+         Westbury, Oakdale]
+providers: [Arch Home Repairs, Brickworks Builders, Cornerstone Renovations, Dependable Home Services,
+            Evergreen Interiors, First Call Repairs, Granite Building Works, Homefix Contractors,
+            Ironwood Carpentry, Jasmine Interiors, Keystone Home Repairs, Lantern Electricals and Builders,
+            Mason Street Builders, Newbuild Contractors, Oakbeam Renovations, Pillar Home Works,
+            Quickmend Repairs, Rooftop Builders, Sturdy Walls Contractors, Trident Home Services]
+loss_details:                    # area of the home -> items that can be damaged there
+  kitchen: [Kitchen cabinets, Gas stove, Refrigerator, Kitchen tiles]
+  living room: [Sofa set, Television, Ceiling fan, Wooden flooring]
+  bedroom: [Bed frame, Mattress, Wardrobe, Air conditioner]
+  bathroom: [Water heater, Bathroom tiles, Wash basin, Plumbing pipes]
+  roof: [Roof sheets, Water tank, Roof waterproofing, Solar water heater]
+  front entrance: [Main door, Door lock, Window grille, Porch light]
+item_price_range: [2000, 60000]
+extra_billed_items: [Modular wardrobe, Home theatre system, Marble flooring, Inverter battery, Water purifier]
+covered_incidents:               # description in the policyholder's words -> clause that gives cover
+  - {description: "a fire started from an electrical short circuit in my house", clause: COV-01}
+  - {description: "smoke from a fire in the house next door spread into my house", clause: COV-01}
+  - {description: "a water pipe burst and flooded part of my house", clause: COV-02}
+  - {description: "a heavy storm damaged my house", clause: COV-03}
+  - {description: "flood water entered my house during heavy rain", clause: COV-03}
+  - {description: "burglars broke into my house while I was away for the day", clause: COV-04}
+exclusions:
+  - {description: "a water pipe burst while my house had been left empty for more than 60 days", clause: EXC-01}
+  - {description: "damp and leaks that built up slowly over several years damaged part of my house", clause: EXC-02}
+  - {description: "a fire started in the part of my house that I let to paying tenants as a shop", clause: EXC-03}
+partly_covered:                  # covered, with one limited item
+  - {description: "burglars broke into my house while I was away and also took my gold jewellery", clause: COV-04, limit_clause: LIM-01, extra_item: Gold jewellery}
+  - {description: "burglars broke into my house while I was away and also took cash kept at home", clause: COV-04, limit_clause: LIM-02, extra_item: Cash kept at home}
+  - {description: "a heavy storm damaged my house and also knocked down the garden wall", clause: COV-03, limit_clause: LIM-03, extra_item: Garden wall}
+cues:                            # sentences added to a statement, each tied to a warning sign
+  - {flag_id: RF-G02, sentence: "I need this settled in cash as quickly as possible.", rate_fraud: 0.4, rate_genuine: 0.04}
+  - {flag_id: RF-G03, sentence: "I cannot produce the original receipts for the damaged things, only photocopies of them.", rate_fraud: 0.3, rate_genuine: 0.03}
+  - {flag_id: RF-P01, sentence: "I added my jewellery to the policy only a few weeks before this happened.", rate_fraud: 0.3, rate_genuine: 0.03}
+  - {flag_id: RF-P02, sentence: "There was no sign that anyone had forced their way in.", rate_fraud: 0.3, rate_genuine: 0.03}
+  - {flag_id: RF-P03, sentence: "I had moved my most valuable belongings out of the house a few days earlier.", rate_fraud: 0.3, rate_genuine: 0.03}
+  - {flag_id: RF-P04, sentence: "I have already had everything repaired and thrown away the damaged items.", rate_fraud: 0.3, rate_genuine: 0.03}
+incident_report_rate: 0.5
+statement_templates:
+  - >-
+    I am writing about the incident of {incident_date} at my home in {location}. On that day {incident_description}.
+    Nobody was hurt, and once it was safe I went round the house to see what had happened. The worst of the damage is
+    in the {loss_detail}, and it was clear that it could not be left as it was. I asked {provider} to inspect the damage
+    and prepare the paperwork. I have tried to give an accurate account in this statement, and I am ready to answer any
+    further questions you may have. Please let me know if you need anything else from me to deal with this case.
+  - >-
+    This is my account of what happened on {incident_date} at my home in {location}. That day {incident_description}.
+    I made sure my family was safe and then looked at the damage. Most of it was in the {loss_detail}, and several
+    things there will need repair or replacement. I contacted {provider} the same week to inspect and repair the damage.
+    I have set out everything that I remember here as clearly as I can. Please contact me if you need more details or
+    further papers so that this case can be dealt with.
+assessment_templates:
+  - >-
+    The home was inspected together with {provider}. The damage seen is concentrated in the {loss_detail} and its
+    pattern was noted during the inspection. The items listed below were examined one by one and are considered to
+    need repair or replacement. The estimate below is based on the condition seen on the day.
+  - >-
+    An inspection of the home took place with {provider} present. The main area of damage is the {loss_detail}.
+    Each item listed below was examined and recorded. The estimate covers the listed items and reflects their
+    condition at the time of inspection.
+incident_report_templates:
+  - >-
+    A report was made about an incident on {incident_date} in {location}. The person reporting stated that
+    {incident_description}. An officer recorded these details and the reference was given to the person
+    reporting. No further action was noted at the time of this report.

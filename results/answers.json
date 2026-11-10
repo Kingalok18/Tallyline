@@ -1,0 +1,18 @@
+{
+  "answers_removed": 0,
+  "cached_model_calls": 549,
+  "cases": 50,
+  "data": "sample",
+  "known_answers_correct": 1.0,
+  "known_questions": 200,
+  "limited": false,
+  "model": "qwen2.5:3b-instruct",
+  "model_seconds": 570.7,
+  "not_found_correct": 1.0,
+  "note_sentences": 190,
+  "note_sentences_kept_share": 0.9474,
+  "note_sentences_removed": 10,
+  "notes_failed": 0,
+  "real_model_calls": 24,
+  "unanswerable_questions": 50
+}

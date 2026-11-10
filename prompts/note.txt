@@ -1,0 +1,21 @@
+You write a short note for an insurance investigator. Use only the findings and passages below.
+
+Passages, for reference only:
+{passages}
+
+Findings:
+{findings}
+
+Write exactly {count} sentences, one for each numbered line of the findings, in the same order, saying what that line says. Do not summarise the passages.
+
+Rules:
+- Put the labels shown at the end of that line in "passages". Do not write labels in the text.
+- Do not write dates, amounts or ID codes. Describe things in words; the cited passages show the details.
+- Repeat only what the line says. Add no reasons of your own, and do not mention the findings or the passages.
+- A warning sign is not proof of fraud, so do not say that fraud happened.
+- Call the matter under review a "case" every time, and use no other word for it.
+
+Example of the form:
+{{"sentences": [{{"text": "One plain sentence for line 1.", "passages": ["P1"]}}, {{"text": "One plain sentence for line 2.", "passages": ["P2", "P3"]}}]}}
+
+JSON:

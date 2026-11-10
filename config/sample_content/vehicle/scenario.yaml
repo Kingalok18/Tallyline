@@ -1,0 +1,109 @@
+# Everything vehicle-specific that the sample data generator needs.
+currency: INR
+past_amount_range: [10000, 150000]
+dataset_mapping:                # dataset columns used to build the incident date
+  year: Year
+  month: Month
+  week_of_month: WeekOfMonth
+  day_of_week: DayOfWeek
+cities: [Riverton, Lakeside, Ashford, Milltown, Northgate, Fairview, Brookfield, Eastwood, Kingsport, Harlow,
+         Westbury, Oakdale]
+providers: [Apex Auto Works, Bluebird Motor Repairs, Citywide Collision Centre, Dalton Body Shop, Eastgate Motors,
+            Fairfield Auto Care, Grandview Garage, Hillside Panel Beaters, Ironbridge Auto, Jackson Motor Works,
+            Keystone Collision, Linden Road Garage, Marlow Auto Repairs, Northside Body Works, Orchard Motors,
+            Parkway Auto Centre, Quarry Lane Garage, Redwood Repairs, Silverline Autos, Tanner Motor Co,
+            Union Street Garage, Valley Collision Works, Wexford Auto Body, Yardley Motors]
+loss_details:                    # point of impact -> parts that can be damaged there
+  front left: [Front bumper, Left headlamp, Bonnet, Left front fender, Radiator grille]
+  front right: [Front bumper, Right headlamp, Bonnet, Right front fender, Radiator grille]
+  rear left: [Rear bumper, Left tail lamp, Boot lid, Left rear fender, Reversing sensor]
+  rear right: [Rear bumper, Right tail lamp, Boot lid, Right rear fender, Reversing sensor]
+  left side: [Left front door, Left rear door, Left wing mirror, Left door sill]
+  right side: [Right front door, Right rear door, Right wing mirror, Right door sill]
+  roof: [Roof panel, Windscreen, Roof rail, Sunroof seal]
+item_price_range: [2500, 30000]
+extra_billed_items: [Alloy wheel set, Engine mount, Gearbox overhaul, Exhaust silencer, Air conditioning compressor]
+covered_incidents:               # description in the policyholder's words -> clause that gives cover
+  - {description: "my car collided with a stationary delivery van while I was reversing out of a parking space", clause: COV-01}
+  - {description: "another car struck mine at a junction when its driver ignored the give-way sign", clause: COV-01}
+  - {description: "my car skidded on a wet road and hit the road divider", clause: COV-01}
+  - {description: "my car scraped along a concrete pillar as I entered a multi-storey car park", clause: COV-01}
+  - {description: "a falling tree branch landed on my parked car during a storm", clause: COV-03}
+  - {description: "a severe hailstorm damaged my parked car", clause: COV-03}
+  - {description: "a fire started under the bonnet from an electrical fault while the car was parked", clause: COV-02}
+exclusions:                      # 15% of sample cases
+  - {description: "my car hit a road divider while my nephew, who holds no valid driving licence, was driving", clause: EXC-01}
+  - {description: "my car left the road while the driver was under the influence of alcohol, as a breath test later confirmed", clause: EXC-02}
+  - {description: "my car crashed into a barrier while I was taking part in a speed contest on a closed track", clause: EXC-03}
+  - {description: "my car was hit at a junction while I was using it as a taxi to carry paying passengers", clause: EXC-04}
+  - {description: "the panels of my car failed because of gradual rust and wear that built up over several years", clause: EXC-05}
+  - {description: "my car was hit in a car park while I was driving abroad, outside the territory named in the policy", clause: EXC-06}
+partly_covered:                  # 10% of sample cases: covered, with one limited item
+  - {description: "my car skidded on a wet road and hit the road divider, which also destroyed two tyres", clause: COV-01, limit_clause: LIM-01, extra_item: Tyre set}
+  - {description: "another car struck mine at a junction and the impact also cracked the battery", clause: COV-01, limit_clause: LIM-02, extra_item: Battery}
+  - {description: "my car hit a concrete pillar in a car park and the impact also damaged the child seat", clause: COV-01, limit_clause: LIM-03, extra_item: Child seat}
+cues:                            # sentences added to a statement, each tied to a warning sign
+  - {flag_id: RF-G02, sentence: "I need this settled in cash as quickly as possible.", rate_fraud: 0.4, rate_genuine: 0.04}
+  - {flag_id: RF-G03, sentence: "I cannot produce the original receipts for the repairs, only photocopies of them.", rate_fraud: 0.3, rate_genuine: 0.03}
+  - {flag_id: RF-V01, sentence: "I bought the car only a few weeks before this happened.", rate_fraud: 0.4, rate_genuine: 0.05}
+  - {flag_id: RF-V02, sentence: "It happened late at night on an empty road and nobody saw it.", rate_fraud: 0.4, rate_genuine: 0.05}
+  - {flag_id: RF-V03, sentence: "The car has since been sold, so it can no longer be inspected.", rate_fraud: 0.2, rate_genuine: 0.01}
+row_cues:                        # the same, driven by a real dataset column
+  - {flag_id: RF-G10, column: AddressChange_Claim, values: ["under 6 months", "1 year"], sentence: "I moved to a new address shortly before the incident."}
+  - {flag_id: RF-G11, column: PastNumberOfClaims, values: ["more than 4"], sentence: "I have had more than four earlier cases on my insurance."}
+incident_report_rate: 0.5
+statement_templates:
+  - >-
+    I am writing about the incident of {incident_date} in {location}. On that day {incident_description}.
+    I was shaken, but nobody was seriously hurt, and I stopped to look at what had happened. The main damage
+    is at the {loss_detail} of the car, and it was clear straight away that it could not be left as it was.
+    I arranged for the car to be taken to {provider}, who looked at it and prepared the paperwork. I have
+    tried to give an accurate account of events in this statement, and I am ready to answer any further
+    questions you may have. Please let me know if you need anything else from me to deal with this case.
+  - >-
+    This is my account of what happened on {incident_date} in {location}. That day {incident_description}.
+    I took some time to check that everyone was safe and then looked over the car. The damage was mostly at the
+    {loss_detail}, and I could see that the car would need proper attention before it was used again. I contacted
+    {provider} the same week and they took the car in for inspection and repair. I have set out everything
+    that I remember here as clearly as I can. Please contact me if you need more details or further papers
+    so that this case can be dealt with.
+assessment_templates:
+  - >-
+    The car was inspected at {provider}. The damage seen is concentrated at the {loss_detail} and its
+    pattern was noted during the inspection. The parts listed below were examined one by one and are
+    considered to need repair or replacement. The estimate below is based on the condition seen on the day.
+  - >-
+    An inspection of the car took place at the premises of {provider}. The main area of damage is at the
+    {loss_detail}. Each part listed below was examined and recorded. The estimate covers the listed parts
+    and reflects their condition at the time of inspection.
+incident_report_templates:
+  - >-
+    A report was made about an incident on {incident_date} in {location}. The person reporting stated that
+    {incident_description}. An officer recorded these details and the reference was given to the person
+    reporting. No further action was noted at the time of this report.
+fallback_columns:                # used only if the real dataset file is missing
+  Month: [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
+  WeekOfMonth: [1, 2, 3, 4, 5]
+  DayOfWeek: [Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday]
+  Make: [Honda, Toyota, Ford, Mazda, Chevrolet]
+  AccidentArea: [Urban, Rural]
+  Sex: [Male, Female]
+  MaritalStatus: [Single, Married]
+  Age: [25, 35, 45, 55]
+  Fault: [Policy Holder, Third Party]
+  PolicyType: [Sedan - All Perils, Sedan - Collision, Sport - Liability]
+  VehicleCategory: [Sedan, Sport, Utility]
+  VehiclePrice: [less than 20000, 20000 to 29000, 30000 to 39000, more than 69000]
+  PolicyNumber: [1, 2, 3, 4]
+  RepNumber: [1, 2, 3, 4]
+  Deductible: [300, 400, 500]
+  DriverRating: [1, 2, 3, 4]
+  Days_Policy_Accident: [none, 1 to 7, more than 30]
+  PastNumberOfClaims: [none, "1", 2 to 4, more than 4]
+  AgeOfVehicle: [new, 3 years, 7 years]
+  PoliceReportFiled: ["Yes", "No"]
+  WitnessPresent: ["Yes", "No"]
+  AgentType: [External, Internal]
+  AddressChange_Claim: [no change, under 6 months, 1 year]
+  Year: [1994, 1995, 1996]
+  BasePolicy: [Liability, Collision, All Perils]

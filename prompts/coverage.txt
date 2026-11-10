@@ -1,0 +1,26 @@
+You check whether an insurance policy covers an incident. Use only the policy passages below. A passage being listed here does not mean it applies.
+
+Incident:
+{incident}
+
+Items in the case:
+{items}
+
+Policy passages:
+{passages}
+
+Go through these steps in order and stop at the first one that is true:
+1. "excluded": an exclusion passage describes what the incident itself says happened. Do not assume anything the incident does not say.
+2. "partly": a limit passage names an item in the case. The status is "partly" even though the rest of the loss is covered.
+3. "covered": a cover passage applies, and no limit passage names an item in the case.
+4. "unclear": no cover passage applies.
+
+Call the matter under review a "case" every time, and use no other word for it.
+
+Return a JSON object with these keys, in this order:
+"limited_item": the item in the case named in a limit passage, or "none"
+"reason": one short sentence naming what the incident says and the passage that applies
+"status": one of "covered", "excluded", "partly", "unclear"
+"passages": array of the labels of the passages that support the status, for example ["P1"]
+
+JSON:

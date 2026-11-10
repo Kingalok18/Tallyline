@@ -1,0 +1,4 @@
+{% macro cites(ids, cite) %}{% for id in ids if id %}<button type="button" class="cite" aria-label="Open passage {{ id }}" title="{{ id }}"
+  hx-get="/passages/{{ id }}" hx-target="#side-panel-body" hx-swap="innerHTML">{{ cite.num(id) }}</button>{% endfor %}{% endmacro %}
+
+{% macro risk_badge(level) %}{% if level %}<span class="badge risk-{{ level }}">{{ level }}</span>{% else %}<span class="muted">Not analysed</span>{% endif %}{% endmacro %}

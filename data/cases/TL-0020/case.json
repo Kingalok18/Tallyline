@@ -1,0 +1,12 @@
+{
+  "amount": 83131.0,
+  "case_id": "TL-0020",
+  "case_type": "health",
+  "currency": "INR",
+  "features": {},
+  "incident_date": "2023-08-17",
+  "policy_number": "PN-661956",
+  "policy_start": "2021-10-12",
+  "provider": "Stonebridge Hospital",
+  "sample": true
+}

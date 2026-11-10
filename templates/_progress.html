@@ -1,0 +1,4 @@
+<div class="progress" hx-get="/cases/{{ case_id }}/analysis-status" hx-trigger="every 1s" hx-target="#findings" hx-swap="innerHTML">
+  <p class="progress-line">{{ job.step }}…</p>
+  <p class="muted">Analysis runs on this computer and can take a few minutes.</p>
+</div>

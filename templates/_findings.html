@@ -1,0 +1,75 @@
+{% from "_macros.html" import cites, risk_badge %}
+{% if error %}<div class="notice">The analysis stopped: {{ error }}</div>{% endif %}
+{% if not findings %}
+  <h2>Findings</h2>
+  <p class="muted">This case has not been analysed yet.</p>
+  <button type="button" class="button" hx-post="/cases/{{ case.id }}/analyse" hx-target="#findings" hx-swap="innerHTML">Run analysis</button>
+{% else %}
+  {% if findings.errors %}<div class="notice">Some documents could not be read: {{ findings.errors|join("; ") }}</div>{% endif %}
+  <div class="section-head">
+    <h2>Note</h2>
+    <button type="button" class="link-button" hx-post="/cases/{{ case.id }}/analyse" hx-target="#findings" hx-swap="innerHTML">Run again</button>
+  </div>
+  {% if findings.note.sentences %}
+    <p class="note-text">
+      {% for sentence in findings.note.sentences %}{{ sentence.text }}{{ cites(sentence.passages, cite) }} {% endfor %}
+    </p>
+  {% else %}
+    <p class="muted">No sentence of the note passed the citation check.</p>
+  {% endif %}
+  {% if findings.note.action %}<p>Recommended action: <strong>{{ DECISIONS.get(findings.note.action, findings.note.action) }}</strong></p>{% endif %}
+  {% if findings.note.removed %}<p class="muted small">{{ findings.note.removed|length }} sentence(s) removed by the citation check.</p>{% endif %}
+
+  <h2>Coverage</h2>
+  <p><span class="badge badge-neutral">{{ COVERAGE_LABELS.get(findings.coverage.status, findings.coverage.status) }}</span>
+    {{ findings.coverage.reason }} {{ cites(findings.coverage.passages, cite) }}</p>
+  {% if findings.coverage.clauses %}<p class="muted small">Clauses: <span class="mono">{{ findings.coverage.clauses|join(", ") }}</span></p>{% endif %}
+
+  <h2>Warning signs</h2>
+  {% if findings.red_flags %}
+    <ul class="findings-list">
+      {% for flag in findings.red_flags %}
+      <li><span class="mono">{{ flag.flag_id }}</span> {{ flag.title.split(" ", 1)[-1] if flag.title.startswith(flag.flag_id) else flag.title }}.
+        <span class="muted">{% if flag.evidence %}The case says: "{{ flag.evidence }}"{% else %}{{ flag.reason }}{% endif %}</span> {{ cites([flag.guide_passage, flag.case_passage], cite) }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}<p class="muted">None found.</p>{% endif %}
+
+  <h2>Document mismatches</h2>
+  {% if findings.mismatches %}
+    <ul class="findings-list">
+      {% for mismatch in findings.mismatches %}
+      <li>{{ mismatch.description }} {{ cites(mismatch.passages, cite) }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}<p class="muted">None found.</p>{% endif %}
+
+  <h2>Similar past cases</h2>
+  {% if findings.similar_past_cases %}
+    <ul class="findings-list">
+      {% for past in findings.similar_past_cases %}
+      <li><a class="mono" href="/past-cases/{{ past.past_case_id }}?case={{ case.id }}">{{ past.past_case_id }}</a>
+        {{ OUTCOME_LABELS.get(past.outcome, past.outcome) }}, <span class="mono">{{ past.currency }} {{ "%.2f"|format(past.amount) }}</span>.
+        <span class="muted">{{ past.why }}</span> {{ cites([past.passage], cite) }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}<p class="muted">None found.</p>{% endif %}
+
+  <h2>Risk score</h2>
+  <p><span class="score mono">{{ findings.risk.score }}</span> of 100 {{ risk_badge(findings.risk.level) }}</p>
+  <div class="table-wrap">
+    <table class="compact">
+      <thead><tr><th>Reason</th><th class="num">Weight</th><th class="num">Points</th></tr></thead>
+      <tbody>
+        {% for part in findings.risk.parts %}
+        <tr><td>{{ part.label }}</td><td class="mono num">{{ part.weight }}</td><td class="mono num">{{ part.points }}</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% if findings.risk.model_factors %}<p class="muted small">Dataset fields raising the model's probability: {{ findings.risk.model_factors|join(", ") }}.</p>{% endif %}
+  {% if reload_doc %}
+  <span id="case-risk" hx-swap-oob="true">{{ risk_badge(findings.risk.level) }}</span>
+  <div hx-get="/cases/{{ case.id }}/documents/{{ reload_doc }}" hx-trigger="load" hx-target="#doc-view" hx-swap="innerHTML"></div>
+  {% endif %}
+{% endif %}

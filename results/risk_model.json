@@ -1,0 +1,49 @@
+{
+  "vehicle": {
+    "data": "real",
+    "rows": 15345,
+    "positives": 918,
+    "features": [
+      "AccidentArea",
+      "AddressChange_Claim",
+      "Age",
+      "AgeOfPolicyHolder",
+      "AgeOfVehicle",
+      "AgentType",
+      "BasePolicy",
+      "DayOfWeek",
+      "DayOfWeekClaimed",
+      "Days_Policy_Accident",
+      "Days_Policy_Claim",
+      "Deductible",
+      "DriverRating",
+      "Fault",
+      "Make",
+      "Month",
+      "MonthClaimed",
+      "NumberOfCars",
+      "NumberOfSuppliments",
+      "PastNumberOfClaims",
+      "PoliceReportFiled",
+      "PolicyType",
+      "VehicleCategory",
+      "VehiclePrice",
+      "WeekOfMonth",
+      "WeekOfMonthClaimed",
+      "WitnessPresent",
+      "Year"
+    ],
+    "metrics": {
+      "logistic_regression": {
+        "roc_auc": 0.8052,
+        "pr_auc": 0.1616,
+        "recall_top_10pct": 0.2886
+      },
+      "random_forest": {
+        "roc_auc": 0.8332,
+        "pr_auc": 0.2292,
+        "recall_top_10pct": 0.3823
+      }
+    }
+  }
+}

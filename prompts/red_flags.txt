@@ -1,0 +1,17 @@
+You compare an insurance case with a guide of fraud warning signs. A warning sign is not proof of fraud.
+
+Warning signs from the guide:
+{guide}
+
+Sentences from the case:
+{sentences}
+
+Most sentences are an ordinary account of an incident and show no warning sign. Most cases show none, or only one.
+
+For each warning sign, look for one sentence above that itself says the thing the guide describes. If there is none, leave that warning sign out. Never infer a warning sign from something the case does not mention.
+
+Return a JSON object with one key, "flags", holding an array, which may be empty. Each entry has these keys:
+"sentence": the label of the sentence, for example "S3"
+"flag": the label of the warning sign it shows, for example "G1"
+
+JSON:
