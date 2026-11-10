@@ -7,6 +7,8 @@ __pycache__/
 PROJECT_INTERVIEW_GUIDE.md
 BUILD_LOG.md
 TALLYLINE_IMPLEMENTATION.md
+RUN_STEPS.md
+demo_cases/
 
 # Editor and OS files
 .vscode/
